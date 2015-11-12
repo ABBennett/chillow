@@ -28,27 +28,29 @@ describe Apartment do
 
   describe "#full?" do
     it "should return false when Apartment is first initialized" do
-      expect(apartment.full?).to eq(false)
-      expect(apartment.occupants.length).to eq(0)
+      expect(apartment.full?(4)).to eq(false)
+      expect(apartment.array.length).to eq(0)
     end
   end
 
-  describe "#add_roommate" do
+  describe "#add" do
     it "should add a roomate to the apartment" do
-      apartment.add_roommate("Sally", "Chu")
-      expect(apartment.occupants.length).to eq(1)
-      expect(apartment.occupants[0].first_name).to eq("Sally")
-      expect(apartment.occupants[0].last_name).to eq("Chu")
+      person = Occupant.new("Sally", "Chu")
+      apartment.add(person)
+      expect(apartment.array.length).to eq(1)
+      expect(apartment.array[0].first_name).to eq("Sally")
+      expect(apartment.array[0].last_name).to eq("Chu")
     end
   end
-  describe "#remove_roommate" do
+  describe "#remove" do
     it "should remove a roomate to the apartment" do
-      apartment.add_roommate("Sally", "Chu")
-      expect(apartment.occupants.length).to eq(1)
-      expect(apartment.occupants[0].first_name).to eq("Sally")
-      expect(apartment.occupants[0].last_name).to eq("Chu")
-      apartment.remove_roommate("Sally", "Chu")
-      expect(apartment.occupants.length).to eq(0)
+      person = Occupant.new("Sally", "Chu")
+      apartment.add(person)
+      expect(apartment.array.length).to eq(1)
+      expect(apartment.array[0].first_name).to eq("Sally")
+      expect(apartment.array[0].last_name).to eq("Chu")
+      apartment.remove(person)
+      expect(apartment.array.length).to eq(0)
     end
   end
 
